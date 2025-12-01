@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css?v=3">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-gamepad brand-icon"></i>
+                <span class="brand-text">GAME HUB</span>
+            </div>
+            
+            <div class="sidebar-scroll">
+                <h6 class="sidebar-heading">Your Collection</h6>
+                <ul class="nav nav-pills flex-column mb-auto" id="library-list"></ul>
+            </div>
+
+            <div class="sidebar-footer mt-auto">
+                <button id="add-game-btn" class="btn sidebar-action-btn"><i class="fas fa-plus"></i> Add Game</button>
+                <button id="settings-btn" class="btn sidebar-action-btn"><i class="fas fa-cog"></i> Settings</button>
+                <div id="update-container" style="display: none; margin-top: 10px;">
+                    <button id="update-btn" class="btn btn-update w-100">
+                        <i class="fas fa-arrow-circle-up"></i> Update Available
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div id="main-content">
+            <!-- Header -->
+            <header>
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search your library...">
+                </div>
+                <div class="ms-auto header-controls">
+                    <button id="refresh-btn" class="btn icon-btn" title="Refresh Library"><i class="fas fa-sync-alt"></i></button>
+                    <button id="view-toggle-btn" class="btn icon-btn" title="Toggle View"><i class="fas fa-th-large"></i></button>
+                </div>
+            </header>
+            
+            <!-- Split View: Games + Details -->
+            <div class="content-split">
+                <!-- Game Grid/List -->
+                <div id="game-display-area">
+                    <!-- List View (Hidden by default) -->
+                    <div id="list-view" class="view-container"></div>
+                    
+                    <!-- Grid View (Active by default) -->
+                    <div id="grid-view" class="view-container active-view"></div>
+                </div>
+                
+                <!-- Right Details Panel -->
+                <div id="details-view">
+                    <!-- Hero Background -->
+                    <div id="hero-background"></div>
+
+                    <div class="details-content">
+                        <div id="hero-image-container">
+                            <!-- Image injected via JS -->
+                        </div>
+                        
+                        <div class="details-body">
+                            <h1 id="game-title">Select a Game</h1>
+                            
+                            <div class="stats-row">
+                                <div class="stat-item">
+                                    <span class="stat-label"><i class="far fa-clock"></i> PLAYTIME</span>
+                                    <span class="stat-value" id="playtime">0h</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label"><i class="far fa-calendar-alt"></i> LAST PLAYED</span>
+                                    <span class="stat-value" id="last-played">Never</span>
+                                </div>
+                            </div>
+
+                            <div class="action-row">
+                                <button id="play-button" disabled>
+                                    <i class="fas fa-play"></i> PLAY
+                                </button>
+                                <div class="icon-actions">
+                                    <button id="favorite-btn" class="btn action-icon-btn" title="Favorite"><i class="far fa-star"></i></button>
+                                    <button id="hide-btn" class="btn action-icon-btn" title="Hide"><i class="far fa-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toasts -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100"></div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
